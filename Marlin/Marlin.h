@@ -189,6 +189,8 @@ void enquecommand_P(const char *cmd); //put an ascii command at the end of the c
 void prepare_arc_move(char isclockwise);
 void clamp_to_software_endstops(float target[3]);
 
+void refresh_cmd_timeout(void);
+
 #ifdef FAST_PWM_FAN
 void setPwmFrequency(uint8_t pin, int val);
 #endif
@@ -234,5 +236,10 @@ extern unsigned long stoptime;
 
 // Handling multiple extruders pins
 extern uint8_t active_extruder;
+
+#ifdef DIGIPOT_I2C
+extern void digipot_i2c_set_current( int channel, float current );
+extern void digipot_i2c_init();
+#endif
 
 #endif
